@@ -14,12 +14,14 @@ namespace OneTimePad
             var message = Console.ReadLine();
             var key = otp.Generate(message.Length);
             var cipherText = otp.Encrypt(key, message);
-            Console.WriteLine();
-            Console.WriteLine($"Cipher Text = {cipherText}");
-            var decryptedMessage = otp.Decrypt(key, cipherText);
+            //Console.WriteLine();
+            //Console.WriteLine($"Cipher Text = {cipherText}");
+            //var decryptedMessage = otp.Decrypt(key, cipherText);
 
             Console.WriteLine();
-            Console.WriteLine($"Decrypted Message = {decryptedMessage}");
+            //Console.WriteLine($"Decrypted Message = {decryptedMessage}");
+            Console.WriteLine($"Key = {key}");
+            Console.WriteLine($"Cipher message = {cipherText}");
 
             Console.ReadLine();
         }

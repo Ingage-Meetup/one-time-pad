@@ -9,12 +9,28 @@ namespace OneTimePad.Lib
         private static Random random = new Random();
         public string Generate(int keyLengthInBytes)
         {
-            return "Not a random string";
+            Random random = new Random(DateTime.Now.Millisecond);
+            StringBuilder builder = new StringBuilder();
+            int asciiCharacterStart = 65; // from which ascii character code the generation should start
+            int asciiCharacterEnd = 122; // to which ascii character code the generation should end
+
+            for (int i = 0; i < keyLengthInBytes; i++)
+            {
+                builder.Append((char)(random.Next(asciiCharacterStart, asciiCharacterEnd + 1) % 255));
+            }
+            return builder.ToString();
         }
 
         public string Encrypt(string key, string message)
         {
-            return "Hardly encrypted";
+            StringBuilder ciphertext = new StringBuilder();
+            for (int i = 0; i < message.Length - 1; i++)
+            {
+
+                string encryptedChar = (message[i] ^ key[i]).ToString();
+                ciphertext.Append(encryptedChar);
+            }
+            return ciphertext.ToString();
         }
 
         public string Decrypt(string key, string cipherText)
