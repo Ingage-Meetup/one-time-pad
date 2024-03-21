@@ -24,10 +24,10 @@ namespace OneTimePad.Lib
         public string Encrypt(string key, string message)
         {
             StringBuilder ciphertext = new StringBuilder();
-            for (int i = 0; i < message.Length - 1; i++)
+            for (int i = 0; i <= message.Length - 1; i++)
             {
 
-                string encryptedChar = (message[i] ^ key[i]).ToString();
+                char encryptedChar = (char)(message[i] ^ key[i]);
                 ciphertext.Append(encryptedChar);
             }
             return ciphertext.ToString();
@@ -35,7 +35,14 @@ namespace OneTimePad.Lib
 
         public string Decrypt(string key, string cipherText)
         {
-            return "Wonder what the original message was?";
+            StringBuilder plainText = new StringBuilder();
+            for (int i = 0; i <= cipherText.Length - 1; i++)
+            {
+
+                char encryptedChar = (char)(cipherText[i] ^ key[i]);
+                plainText.Append(encryptedChar);
+            }
+            return plainText.ToString();
         }
     }
 }
